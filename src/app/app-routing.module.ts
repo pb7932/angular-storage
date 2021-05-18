@@ -5,6 +5,7 @@ import { PageNotFound404Component } from './components/dashboard/page-not-found4
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
+  { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)},
   { path: '**', component: PageNotFound404Component }
 ];
 
