@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFound404Component } from './components/dashboard/page-not-found404/page-not-found404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductsModule } from './products/products.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    ProductsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
