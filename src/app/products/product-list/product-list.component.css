@@ -1,0 +1,27 @@
+.header {
+  font-size: 2.5rem;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 400px;
+  margin-bottom: 1rem;
+}
+
+.img {
+  display: inline-block;
+}
+
+.product-name,
+.product-price {
+  font-family: "Handlee", cursive;
+  padding: 0.5rem;
+}
