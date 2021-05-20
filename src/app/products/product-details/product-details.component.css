@@ -1,0 +1,40 @@
+.product-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 10vh;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 10px 20px;
+  background-color: #112d32;
+  color: rgb(255, 255, 255);
+  border: 0px;
+  border-radius: 4px;
+  margin-top: 4rem;
+  float: right;
+}
+
+.btn:hover {
+  background-color: #254e58;
+  box-shadow: 3px 3px black;
+}
+
+.details {
+  padding-left: 2rem;
+}
+.price,
+.ing,
+.cal {
+  padding-top: 1rem;
+}
+
+.price {
+  padding-bottom: 1rem;
+}
+
+.ing-ul {
+  padding-left: 2rem;
+}

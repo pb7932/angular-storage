@@ -1,12 +1,14 @@
 <h3 class="header">These are our products</h3>
 <div class="product-list">
-    <div *ngFor="let product of products" class="product">
-        <img src="{{product.url}}" alt="{{product.name}} photo" 
-                class="img" style="max-width:300px; max-height: 300px;">
-        <div class="product-data">
-            <p class="product-name"><i>Name: {{product.name}}</i></p>
-            <p class="product-price"><i>Price {{product.price}} kn</i></p>
-        </div>
+    <div *ngFor="let product of products" >
+        <a routerLink="/products/{{product.id}}" class="product">
+            <img src="{{product.url}}" alt="{{product.name}} photo" 
+                    class="img" style="max-width:300px; max-height: 300px;">
+            <div class="product-data">
+                <p class="product-name"><i>Name: {{product.name}}</i></p>
+                <p class="product-price"><i>Price: {{product.price}} kn</i></p>
+            </div>
+        </a>
     </div>
 </div>
 

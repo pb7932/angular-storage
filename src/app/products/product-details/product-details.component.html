@@ -1,1 +1,25 @@
-<p>product-details works!</p>
+<div *ngIf="product" class="product-details">
+    <div>
+        <h2 class="detail-header">{{product.name}} details:</h2>
+        <div class="details">
+            <p class="price">Price: <span class="badge rounded-pill bg-success">{{product.price}}</span></p>
+            <div>
+                Ingredients:
+                <ul class="ing-ul">
+                    <li *ngFor="let ingredient of product.ingredients" class="ing">
+                        {{ingredient}}
+                    </li>
+                </ul>
+            </div>
+            <p class="cal">Calories: <span class="badge rounded-pill bg-primary">{{product.calories}}</span></p>
+        </div>
+    </div>
+    <div>
+        <img src="{{product.url}}" alt="{{product.name}} picture" 
+            style="max-width: 350px; max-height: 350px;" class="img">
+    </div>
+</div>
+<div *ngIf="!product">
+    Something went from. Please go back and try again.
+</div>
+<button class="btn" (click)="goBack()">Go back</button>

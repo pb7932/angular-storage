@@ -4,7 +4,7 @@
 
 .product-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .product {
@@ -24,4 +24,13 @@
 .product-price {
   font-family: "Handlee", cursive;
   padding: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.6;
+  border: 2px dotted black;
 }

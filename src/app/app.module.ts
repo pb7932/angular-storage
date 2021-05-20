@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFound404Component } from './components/dashboard/page-not-found404/page-not-found404.component';
@@ -15,6 +15,7 @@ import { ProductsModule } from './products/products.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ProductsModule,
     AppRoutingModule,
   ],
