@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PageNotFound404Component } from './components/dashboard/page-not-found404/page-not-found404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsModule } from './products/products.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ProductsModule } from './products/products.module';
     BrowserModule,
     FormsModule,
     ProductsModule,
+    AdminModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PageNotFound404Component } from './components/dashboard/page-not-found404/page-not-found404.component';
 
@@ -10,7 +10,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
+  imports: [RouterModule.forRoot(
+    routes,
+    {
+      enableTracing: true,
+      preloadingStrategy: PreloadAllModules
+    }
+  )],
+  exports: [RouterModule]})
 export class AppRoutingModule { }
