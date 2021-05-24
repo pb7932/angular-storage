@@ -19,18 +19,12 @@ export class LoginComponent implements OnInit {
 
   login():void {
     this.authService.login('admin', '123').subscribe(() => {
-      this.authService.isLogIn()?.subscribe(x => {
+      this.authService.isLoggedIn.subscribe(x => {
         if(x == true) {
           const redirectUrl = 'admin';
           this.router.navigate([redirectUrl]);
         }
       });
-      /*if(result == true) {
-        const redirectUrl = '/admin';
-        
-        this.router.navigate([redirectUrl]);
-      }
-      */
     });
   }
 }

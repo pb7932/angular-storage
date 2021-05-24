@@ -11,9 +11,11 @@ nav {
 }
 
 .nav-left {
-  display: flex;
-  width: 20%;
-  justify-content: space-around;
+  margin-left: 2rem;
+  display: grid;
+  width: 40%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 3rem;
 }
 
 a {
