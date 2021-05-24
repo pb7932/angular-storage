@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree , Router, CanActivateChild} from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -24,8 +25,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   checkLogin(url: string): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authService.isLoggedIn == true) return true;
-
+    let result = this.authService.isLoggedIn;
+    let x = false;
+    result.subscribe((res) => {x = res});
+    if(x) return true;
     this.authService.redirectUrl = url;
 
     return this.router.parseUrl('/login');

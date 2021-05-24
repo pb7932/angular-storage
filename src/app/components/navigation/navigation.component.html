@@ -1,0 +1,11 @@
+<nav>
+    <div class="nav nav-left">
+        <a href="">Home</a>
+        <a href="products">Products</a>
+        <a *ngIf="loggedIn" href="admin">Admin</a> 
+    </div>
+    <div class="nav nav-right">
+        <a *ngIf="!loggedIn" href="login">Log in</a>
+        <a *ngIf="loggedIn" href="">Logout</a>
+    </div>
+  </nav>
