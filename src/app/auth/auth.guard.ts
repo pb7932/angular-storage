@@ -25,9 +25,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   checkLogin(url: string): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let result = this.authService.isLoggedIn;
     let x = false;
-    result.subscribe((res) => {x = res});
+    this.authService.isLoggedIn.subscribe((res) => {x = res});
+    
     if(x) return true;
     this.authService.redirectUrl = url;
 

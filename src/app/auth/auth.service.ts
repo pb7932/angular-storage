@@ -24,14 +24,6 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLoggedIn = new BehaviorSubject<boolean>(false);
+    this.isLoggedIn.next(false);
   }
-
-  public getLoggedIn(): Observable<boolean> {
-    return this.isLoggedIn.asObservable();
-  }
-  /*isLogIn(): Observable<boolean> | undefined {
-    return this.isLoggedIn;
-  }
-  */
 }

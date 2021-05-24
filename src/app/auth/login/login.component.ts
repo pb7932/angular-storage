@@ -21,8 +21,11 @@ export class LoginComponent implements OnInit {
     this.authService.login('admin', '123').subscribe(() => {
       this.authService.isLoggedIn.subscribe(x => {
         if(x == true) {
-          const redirectUrl = 'admin';
+          const redirectUrl = this.authService.redirectUrl;
           this.router.navigate([redirectUrl]);
+        }
+        else {
+          //wrong username and password
         }
       });
     });
