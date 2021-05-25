@@ -8,7 +8,7 @@ import { delay, tap } from 'rxjs/operators';
 export class AuthService {
 
   isLoggedIn: BehaviorSubject<boolean>;
-  redirectUrl: string | null = null;
+  redirectUrl: string | null = 'admin';
 
   constructor() { 
     this.isLoggedIn = new BehaviorSubject<boolean>(false);

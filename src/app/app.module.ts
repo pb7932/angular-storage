@@ -10,7 +10,6 @@ import { ProductsModule } from './products/products.module';
 import { AdminModule } from './admin/admin.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AuthModule } from './auth/auth.module';
-import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
