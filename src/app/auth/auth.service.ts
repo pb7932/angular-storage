@@ -6,11 +6,13 @@ import { delay, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
   isLoggedIn: BehaviorSubject<boolean>;
   redirectUrl: string | null = null;
 
   constructor() { 
     this.isLoggedIn = new BehaviorSubject<boolean>(false);
+    console.log('created auth service ' + Date.now().toFixed());
   }
 
   login(username: string, password: string): Observable<boolean> {

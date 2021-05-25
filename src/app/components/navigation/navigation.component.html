@@ -1,11 +1,11 @@
 <nav>
     <div class="nav nav-left">
-        <a href="">Home</a>
-        <a href="products">Products</a>
-        <a *ngIf="(loggedIn | async)" href="admin">Admin</a> 
+        <a routerLink="/">Home</a>
+        <a routerLink="products">Products</a>
+        <a *ngIf="(loggedIn | async)" routerLink="admin">Admin</a> 
     </div>
     <div class="nav nav-right">
-        <a *ngIf="!(loggedIn | async)" href="login">Log in</a>
-        <a *ngIf="(loggedIn | async)" (click)="logout()" href="">Logout</a>
+        <a *ngIf="!(loggedIn | async)" routerLink="login">Log in</a>
+        <a *ngIf="(loggedIn | async)" (click)="logout()" routerLink="">Logout</a>
     </div>
   </nav>

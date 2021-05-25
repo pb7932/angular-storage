@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 
 import { AuthService } from '../auth.service';
 
@@ -12,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([redirectUrl]);
         }
         else {
-          //wrong username and password
+         //wrong username and password
         }
       });
     });
