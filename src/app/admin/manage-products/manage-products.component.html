@@ -1,1 +1,8 @@
-<p>manage-products works!</p>
+<div>
+    <ul class="product-list">
+        <li *ngFor="let product of products" class="li">
+            {{product.name}} <p class="buttons"><span class="btn btn-light updateBtn">Update</span><span class="btn btn-light deleteBtn">Delete</span></p>
+        </li>
+    </ul>
+    <p *ngIf="products.length == 0">There are no products in the storage.</p>
+</div>

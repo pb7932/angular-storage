@@ -14,7 +14,7 @@ const adminRoutes: Routes = [
        path: '',
        canActivateChild: [AuthGuard],
        children: [
-        { path: 'products', component: ManageProductsComponent },
+        { path: '', component: ManageProductsComponent },
         { path: 'storage', component: ManageStorageComponent }
        ]
      }
