@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
-import { ProductServiceService } from '../product-service.service';
+import { ProductService} from '../../services/product.service';
+import { Product } from '../../services/product';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'; 
 
@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailsComponent implements OnInit {
   product?: Product;
-  constructor(private productService: ProductServiceService,
+  constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private location: Location) { }
 
