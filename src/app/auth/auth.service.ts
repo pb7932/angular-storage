@@ -11,8 +11,8 @@ export class AuthService {
   redirectUrl: string | null = 'admin';
 
   constructor() { 
-    this.isLoggedIn = new BehaviorSubject<boolean>(false);
-    //this.isLoggedIn = new BehaviorSubject<boolean>(true);
+    //this.isLoggedIn = new BehaviorSubject<boolean>(false);
+    this.isLoggedIn = new BehaviorSubject<boolean>(true);
     console.log('created auth service ' + Date.now().toFixed());
   }
 

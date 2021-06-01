@@ -1,0 +1,48 @@
+<div class="container centered-container">
+    <form (ngSubmit)="onSubmit()" #productFrom="ngForm">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2">Name: </label>
+            <div class="col-sm-10">
+                <input type="text" name="name" id="name" class="form-control" 
+                        placeholder="Enter name" required [(ngModel)]="product.name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="price" class="col-sm-2">Price: </label>
+            <div class="col-sm-10">
+                <input type="text" name="price" id="price" class="form-control "
+                        placeholder="Enter price" required [(ngModel)]="product.price">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="ingredients" class="col-sm-2">Ingredients: </label>
+           <div class="col-sm-10">
+                <input type="text" name="ingredients" id="ingredients" class="form-control" 
+                        placeholder="Enter ingredients like: 'ingredient1,ingredient2,ingredient3'" required [(ngModel)]="product.ingredients">
+           </div>
+        </div>
+        <div class="form-group row">
+            <label for="calories" class="col-sm-2">Calories:</label>
+            <div class="col-sm-10">
+                <input type="text" name="calories" id="calories" class="form-control" 
+                        placeholder="Enter calories" required [(ngModel)]="product.calories">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="quantity" class="col-sm-2">Qantity:</label>
+            <div class="col-sm-10">
+                <input type="text" name="quantity" id="quantity" class="form-control" 
+                        placeholder="Enter quantity" required [(ngModel)]="product.quantity">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="url" class="col-sm-2">Url:</label>
+            <div class="col-sm-10">
+                <input type="text" name="url" id="url" class="form-control" 
+                        placeholder="Enter URL" required [(ngModel)]="product.url">
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="button" class="btn btn-primary" (click)="onReset()" value="Reset">
+    </form> 
+</div>
