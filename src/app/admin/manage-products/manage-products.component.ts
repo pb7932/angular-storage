@@ -11,13 +11,29 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ManageProductsComponent implements OnInit {
   products: Product[] = [];
-  constructor(private productService: ProductService) { }
+  isProductForDelete: boolean[];
+  constructor(private productService: ProductService) {
+    this.isProductForDelete = [];
+   }
 
   ngOnInit(): void {
     this.getProducts();
   }
 
+  initProductDeleteArray() {
+    for(let index in this.products){
+      this.isProductForDelete.push(false);
+    }
+    console.log(this.isProductForDelete[2]);
+  }
+
   getProducts(): void {
-    this.productService.getProducts().subscribe(products => this.products = products);
+    this.productService.getProducts()
+        .subscribe(products => {this.products = products; this.initProductDeleteArray();});
+  }
+
+  onDelete(id: number): void {
+    this.isProductForDelete[id-1] = true;
+    //this.productService.deleteProduct(id).subscribe();
   }
 }
