@@ -10,8 +10,10 @@ import { Product } from 'src/app/services/product';
 })
 export class AddProductComponent implements OnInit {
   product: Product;
+  submitted: boolean;
 
   constructor(private productService: ProductService) {
+    this.submitted = false;
     this.product = {id: 0, name:'', price: 0, ingredients: [], calories: 0, quantity: 0, url: ''};
    }
 
@@ -28,7 +30,10 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.product);
+    let prod;
+    this.productService.createProduct(this.product).subscribe(p => prod = p);
+    this.submitted = true;
+    console.log(prod);
   }
 
 }
