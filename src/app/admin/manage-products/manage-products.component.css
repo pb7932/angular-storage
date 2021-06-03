@@ -42,3 +42,22 @@
 .btn {
   margin-left: 1rem;
 }
+
+.search {
+  float: right;
+  padding: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.7);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 1rem;
+}
+
+.search-icon {
+  float: right;
+  padding: 10px;
+  border: 2px solid rgba(128, 128, 128, 0.7);
+  border-right: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-top: 1rem;
+}

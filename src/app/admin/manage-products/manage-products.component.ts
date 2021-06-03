@@ -50,4 +50,12 @@ export class ManageProductsComponent implements OnInit {
   deleteProduct(id: number): void {
     this.productService.deleteProduct(id).subscribe(res => this.getProducts());
   }
+
+  getValue(event: Event): string {
+    return (event.target as HTMLInputElement).value;
+  }
+
+  search(term: string): void {
+  
+  }
 }
