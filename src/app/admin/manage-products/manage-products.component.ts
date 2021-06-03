@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 import { Product } from '../../services/product';
 import { ProductService } from 'src/app/services/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-products',
@@ -11,7 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
-  products: Product[] = [];
+  products$!: Observable<Product[]>;
+  private searchText$ = new BehaviorSubject('');
   isProductForDelete: boolean[];
 
   constructor(private productService: ProductService,
@@ -21,18 +23,24 @@ export class ManageProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getProducts();
+   this.products$ = this.searchText$.pipe(
+     debounceTime(500),
+     tap(term => console.log(term)),
+     distinctUntilChanged(),
+     switchMap(term => this.productService.getProducts(term))
+   );
+    
   }
 
   initProductDeleteArray() {
-    for(let index in this.products){
+    for(let index in this.products$){
       this.isProductForDelete.push(false);
     }
   }
 
   getProducts(): void {
-    this.productService.getProducts()
-        .subscribe(products => {this.products = products; this.initProductDeleteArray();});
+    this.productService.getProducts('')
+        .subscribe(products => {this.products$ = of(products); this.initProductDeleteArray();});
   }
 
   onUpdate(id: number): void {
@@ -56,6 +64,6 @@ export class ManageProductsComponent implements OnInit {
   }
 
   search(term: string): void {
-  
+    this.searchText$.next(term);
   }
 }

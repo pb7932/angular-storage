@@ -2,8 +2,8 @@
     class="search" placeholder="Search by name">
 <button type="submit" class="search-icon"><i class="fa fa-search"></i></button>
 <div>
-    <ul class="product-list">
-        <li *ngFor="let product of products" class="li-group">
+    <ul class="product-list" *ngIf="products$">
+        <li *ngFor="let product of products$ | async" class="li-group">
             <div  class="li">
                 {{product.name}} <p class="buttons">
                     <span class="btn btn-light updateBtn" (click)="onUpdate(product.id)">Update</span>
@@ -14,5 +14,5 @@
                 <span (click)="abortDelete(product.id)" class="btn btn-secondary">No</span></div>
         </li>
     </ul>
-    <p *ngIf="products.length == 0">There are no products in the storage.</p>
+    <p *ngIf="!products$">There are no products in the storage.</p>
 </div>

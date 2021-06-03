@@ -12,7 +12,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class UpdateProductComponent implements OnInit {
   product?: Product;
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getProduct();
@@ -24,7 +25,6 @@ export class UpdateProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.product);
-    this.productService.updateProduct(this.product!).subscribe();
+    this.productService.updateProduct(this.product!).subscribe(p => this.router.navigate(['/admin']));
   }
 }

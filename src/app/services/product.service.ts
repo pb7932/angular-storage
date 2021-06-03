@@ -18,8 +18,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl);
+  getProducts(name: string = ''): Observable<Product[]> {
+    if(!name.trim())
+      return this.http.get<Product[]>(this.baseUrl);
+      
+    const options = {params: new HttpParams().set('name', name)};
+    return this.http.get<Product[]>(this.baseUrl, options);
   }
 
   getProduct(id: number): Observable<Product> {
