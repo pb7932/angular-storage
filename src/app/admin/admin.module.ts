@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageStorageComponent } from './manage-storage/manage-storage.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AddProductComponent } from './add-product/add-product.component';
     AdminDashboardComponent,
     ManageProductsComponent,
     ManageStorageComponent,
-    AddProductComponent
+    AddProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,

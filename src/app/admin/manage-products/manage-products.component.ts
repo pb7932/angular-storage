@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Product } from '../../services/product';
 import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-products',
@@ -13,7 +14,9 @@ export class ManageProductsComponent implements OnInit {
   products: Product[] = [];
   isProductForDelete: boolean[];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.isProductForDelete = [];
    }
 
@@ -30,6 +33,10 @@ export class ManageProductsComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts()
         .subscribe(products => {this.products = products; this.initProductDeleteArray();});
+  }
+
+  onUpdate(id: number): void {
+    this.router.navigate([`${id}`], { relativeTo: this.route });
   }
 
   onDelete(id: number): void {

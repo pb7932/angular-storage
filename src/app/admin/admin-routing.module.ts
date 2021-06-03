@@ -5,6 +5,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageStorageComponent } from './manage-storage/manage-storage.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 const adminRoutes: Routes = [
   { path: 'admin',
@@ -17,7 +18,8 @@ const adminRoutes: Routes = [
        children: [
         { path: '', component: ManageProductsComponent },
         { path: 'storage', component: ManageStorageComponent },
-        { path: 'add', component: AddProductComponent }
+        { path: 'add', component: AddProductComponent },
+        { path: ':id', component: UpdateProductComponent }
        ]
      }
    ]
