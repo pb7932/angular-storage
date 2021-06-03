@@ -12,6 +12,7 @@ import { ProductService } from 'src/app/services/product.service';
 export class ManageProductsComponent implements OnInit {
   products: Product[] = [];
   isProductForDelete: boolean[];
+
   constructor(private productService: ProductService) {
     this.isProductForDelete = [];
    }
@@ -24,7 +25,6 @@ export class ManageProductsComponent implements OnInit {
     for(let index in this.products){
       this.isProductForDelete.push(false);
     }
-    console.log(this.isProductForDelete[2]);
   }
 
   getProducts(): void {
@@ -34,6 +34,13 @@ export class ManageProductsComponent implements OnInit {
 
   onDelete(id: number): void {
     this.isProductForDelete[id-1] = true;
-    //this.productService.deleteProduct(id).subscribe();
+  }
+
+  abortDelete(id: number): void {
+    this.isProductForDelete[id-1] = false;
+  }
+
+  deleteProduct(id: number): void {
+    this.productService.deleteProduct(id).subscribe(res => this.getProducts());
   }
 }
