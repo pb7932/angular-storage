@@ -1,38 +1,56 @@
-<div *ngIf="product">
+<div *ngIf="product" class="double-container">
     <div>
-        <form (ngSubmit)="onSubmit()" #updateForm="ngForm">
-            <div>
-                <label for="name">Name: </label>
-                <input type="text" name="name" id="name" [(ngModel)]="product.name">
+        <form (ngSubmit)="onSubmit()" #updateForm="ngForm" class="form">
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-2 col-form-label">Name: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="name" id="name" 
+                        [(ngModel)]="product.name" class="form-control" placeholder="Enter name">
+                </div>
             </div>
-            <div>
-                <label for="price">Price: </label>
-                <input type="text" name="price" id="price" [(ngModel)]="product.price">
+            <div class="mb-3 row">
+                <label for="price" class="col-sm-2 col-form-label">Price: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="price" id="price" 
+                        [(ngModel)]="product.price" class="form-control" placeholder="Enter price">
+                </div>
             </div>
-            <p>Please enter ingredients like: 'ingredient1,ingredient2,ingredent with space3</p>
-            <div>
-                <label for="ingredients">Ingredients: </label>
-                <input type="text" name="ingredients" id="ingredients" [(ngModel)]="product.ingredients">
+            <p class="alert alert-dark">Please enter ingredients like: 'ingredient1,ingredient2,ingredent with space3'</p>
+            <div class="mb-3 row">
+                <label for="ingredients" class="col-sm-2 col-form-label">Ingredients: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="ingredients" id="ingredients" 
+                        [(ngModel)]="product.ingredients" class="form-control" placeholder="Enter ingredients">
+                </div>
             </div>
-            <div>
-                <label for="calories">Calories: </label>
-                <input type="text" name="calories" id="calories" [(ngModel)]="product.calories">
+            <div class="mb-3 row">
+                <label for="calories" class="col-sm-2 col-form-label">Calories: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="calories" id="calories" 
+                        [(ngModel)]="product.calories" class="form-control" placeholder="Enter calories">
+                </div>
             </div>
-            <div>
-                <label for="quantity">Quantity: </label>
-                <input type="text" name="quantity" id="quantity" [(ngModel)]="product.quantity">
+            <div class="mb-3 row">
+                <label for="quantity" class="col-sm-2 col-form-label">Quantity: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="quantity" id="quantity" 
+                        [(ngModel)]="product.quantity" class="form-control" placeholder="Enter quantity">
+                </div>
             </div>
-            <div>   
-                <label for="url">URL: </label>
-                <input type="text" name="url" id="url" [(ngModel)]="product.url">
+            <div class="mb-3 row">   
+                <label for="url" class="col-sm-2 col-form-label">URL: </label>
+                <div class="col-sm-10">
+                    <input type="text" name="url" id="url" 
+                        [(ngModel)]="product.url" class="form-control" placeholder="Enter image url">
+                </div>
             </div>
-            <div>
+            <div class="d-grid gap-2">
                 <input type="submit" class="btn btn-primary" value="Submit">
             </div>
         </form>
     </div>
     <div>
-        <img src="" alt="Product picture" class="img">
+        <img src="{{product.url}}" alt="Product picture" class="img" style="max-width: 350px; max-height: 350px;">
     </div> 
 </div>
 

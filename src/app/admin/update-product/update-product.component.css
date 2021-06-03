@@ -1,0 +1,10 @@
+.double-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form,
+.btn {
+  margin-top: 1rem;
+}
