@@ -1,0 +1,7 @@
+.table {
+  width: 45%;
+}
+
+.table th {
+  border-bottom: 1.5px solid white;
+}
