@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, startWith, switchMap, tap } from 'rxjs/operators';
 
 import { Product } from '../../services/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -18,15 +18,17 @@ export class ManageProductsComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              ) {
     this.isProductForDelete = [];
    }
 
   ngOnInit(): void {
    this.products$ = this.searchText$.pipe(
+     startWith(this.getProducts()),
      debounceTime(500),
      distinctUntilChanged(),
-     switchMap(term => this.productService.getProducts(term))
+     switchMap(term => this.productService.getProducts(term || ''))
    );
     
   }

@@ -3,6 +3,7 @@ import { ProductService} from '../../services/product.service';
 import { Product } from '../../services/product';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'; 
+import { ProductsModule } from '../products.module';
 
 @Component({
   selector: 'app-product-details',
@@ -20,8 +21,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProduct(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.getProduct(id).subscribe(product => this.alterProductBeforeShowingOnUI(product));
+    this.route.data.subscribe(data => {const product: Product = data.product; 
+                                      this.alterProductBeforeShowingOnUI(product)});
   }
   alterProductBeforeShowingOnUI(product: Product): void {
     let ingredients = product.ingredients.toString().split(',');
