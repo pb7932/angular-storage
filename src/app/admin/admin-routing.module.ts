@@ -8,7 +8,7 @@ import { ManageStorageComponent } from './manage-storage/manage-storage.componen
 import { UpdateProductComponent } from './update-product/update-product.component';
 
 const adminRoutes: Routes = [
-  { path: 'admin',
+  { path: '',
    component: AdminDashboardComponent,
    canActivate: [AuthGuard],
    children: [

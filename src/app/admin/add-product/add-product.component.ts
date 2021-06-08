@@ -30,10 +30,8 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let prod;
-    this.productService.createProduct(this.product).subscribe(p => prod = p);
+    this.productService.createProduct(this.product).subscribe();
     this.submitted = true;
-    console.log(prod);
   }
 
 }

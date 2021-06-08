@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Product } from './product';
 
 const httpOptions = {
@@ -37,7 +38,7 @@ export class ProductService {
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.baseUrl, product, httpOptions);
+    return this.http.post<Product>(this.baseUrl, product, httpOptions).pipe(catchError(this.handleError));
   }
 
   updateProduct(product: Product): Observable<Product> {
@@ -52,6 +53,17 @@ export class ProductService {
 
   deleteAllProducts(): Observable<unknown> {
     return this.http.delete(this.baseUrl, httpOptions);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status == 0) {
+      console.log('An error on client occured' + error.error);
+    }
+    else {
+      console.log('Backend error code: ' + error.status + ' body: ' + error.error );
+    }
+
+    return throwError('Something bad happended');
   }
 
 }

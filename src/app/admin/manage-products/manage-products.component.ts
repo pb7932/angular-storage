@@ -25,7 +25,6 @@ export class ManageProductsComponent implements OnInit {
   ngOnInit(): void {
    this.products$ = this.searchText$.pipe(
      debounceTime(500),
-     tap(term => console.log(term)),
      distinctUntilChanged(),
      switchMap(term => this.productService.getProducts(term))
    );
