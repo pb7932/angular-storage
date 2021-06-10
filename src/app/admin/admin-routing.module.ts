@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
+import { CanDeactivateGuard } from '../guards/can-deactivate.guard';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
@@ -17,7 +18,9 @@ const adminRoutes: Routes = [
        canActivateChild: [AuthGuard],
        children: [
         { path: '', component: ManageProductsComponent },
-        { path: 'storage', component: ManageStorageComponent },
+        { path: 'storage', 
+          component: ManageStorageComponent,
+          canDeactivate: [CanDeactivateGuard] },
         { path: 'add', component: AddProductComponent },
         { path: ':id', component: UpdateProductComponent }
        ]
