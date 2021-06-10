@@ -1,6 +1,6 @@
-<input type="text" (keyup)="search(getValue($event))" name="search" id="search" size="30" 
+<input type="text" (keyup)="search(getValue($event))" id="search" size="30" 
     class="search" placeholder="Search by name">
-<button type="submit" class="search-icon"><i class="fa fa-search"></i></button>
+<button class="search-icon"><i class="fa fa-search"></i></button>
 <div>
     <ul class="product-list" *ngIf="products$">
         <li *ngFor="let product of products$ | async" class="li-group">

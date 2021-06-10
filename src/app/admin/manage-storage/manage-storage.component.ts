@@ -20,4 +20,8 @@ export class ManageStorageComponent implements OnInit {
     this.productService.getProducts().subscribe(products => {this.products = products});
   }
 
+  onSave(): void {
+    //save the storage state
+  }
+
 }

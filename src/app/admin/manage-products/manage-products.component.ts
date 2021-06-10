@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, startWith, switchMap, tap } from 'rxjs/operators';
 
 import { Product } from '../../services/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ManageProductsComponent implements OnInit {
   products$!: Observable<Product[]>;
-  private searchText$ = new BehaviorSubject('');
+  private searchText$ = new Subject<string>();
   isProductForDelete: boolean[];
 
   constructor(private productService: ProductService,
@@ -25,7 +25,8 @@ export class ManageProductsComponent implements OnInit {
 
   ngOnInit(): void {
    this.products$ = this.searchText$.pipe(
-     startWith(this.getProducts()),
+     startWith(''),
+     tap(term => {this.initProductDeleteArray();}),
      debounceTime(500),
      distinctUntilChanged(),
      switchMap(term => this.productService.getProducts(term || ''))
@@ -64,7 +65,7 @@ export class ManageProductsComponent implements OnInit {
     return (event.target as HTMLInputElement).value;
   }
 
-  search(term: string): void {
+  search(term: string) {
     this.searchText$.next(term);
   }
 }

@@ -22,7 +22,7 @@ export class ProductService {
   getProducts(name: string = ''): Observable<Product[]> {
     if(!name.trim())
       return this.http.get<Product[]>(this.baseUrl);
-      
+    console.log('name to search: ' + name);
     const options = {params: new HttpParams().set('name', name)};
     return this.http.get<Product[]>(this.baseUrl, options);
   }
