@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { CanComponentDeactivate } from 'src/app/guards/can-deactivate.guard';
 import { DialogService } from 'src/app/services/dialog.service';
 import { HistoryService } from 'src/app/services/history.service';
 
@@ -11,14 +13,17 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './manage-storage.component.html',
   styleUrls: ['./manage-storage.component.css']
 })
-export class ManageStorageComponent implements OnInit {
+export class ManageStorageComponent implements OnInit, CanComponentDeactivate {
   products!: Product[];
-  message: string = '';
+  message: string;
   stateSaved: boolean;
+  confirmState: boolean;
   constructor(private productService: ProductService,
               private historyService: HistoryService,
               private dialogService: DialogService) {
-                this.stateSaved = true;
+                this.stateSaved = false;
+                this.message = '';
+                this.confirmState = false;
                }
 
   ngOnInit(): void {
@@ -30,12 +35,24 @@ export class ManageStorageComponent implements OnInit {
   }
 
   onSave(): void {
-    this.historyService.createHistory(this.products).subscribe(res => {this.message = 'The state of storage has been saved'});
+    this.historyService.createHistory(this.products)
+        .subscribe(res => {this.message = "The state of the storage has been saved."; this.stateSaved = true;});
+  }
+
+  saveState() {
+    this.dialogService.save();
+  }
+
+  leaveState() {
+    this.confirmState = false;
+    this.dialogService.refuse();
   }
 
   canDeactivate(): Observable<boolean> | boolean {
     if(this.stateSaved)
       return true;
-    return this.dialogService.confirm('Save changes?');
+    this.confirmState = true;
+    
+    return this.dialogService.confirm();
   }
 }

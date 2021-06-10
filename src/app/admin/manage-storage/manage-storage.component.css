@@ -1,7 +1,26 @@
 .table {
   width: 45%;
+  margin-top: 1rem;
 }
 
 .table th {
   border-bottom: 1.5px solid white;
+}
+
+td,
+th {
+  background-color: #112d32;
+}
+
+.product-table,
+p {
+  margin-left: 2rem;
+}
+
+.space-left {
+  margin-left: 1rem;
+}
+
+.alert-danger {
+  margin: 1rem 1rem 0 0;
 }
