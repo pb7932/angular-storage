@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { HistoryService } from 'src/app/services/history.service';
+
+import { Product } from 'src/app/services/product';
 
 @Component({
   selector: 'app-history-storage',
@@ -6,10 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./history-storage.component.css']
 })
 export class HistoryStorageComponent implements OnInit {
-
-  constructor() { }
+  historyProducts?: Observable<Product[]>;
+  constructor(private historyService: HistoryService) {}
 
   ngOnInit(): void {
+    this.getInitialHistoryState()
+  }
+  getInitialHistoryState() {
+    this.historyService.getLatestHistory().subscribe(products => {this.historyProducts = of(products);})
   }
 
 }

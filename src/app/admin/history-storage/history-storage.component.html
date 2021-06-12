@@ -1,1 +1,24 @@
-<p>history-storage works!</p>
+<div *ngIf='historyProducts'>
+    <h5>History state</h5>
+    <table class="table table-dark table-bordered table-hover">
+        <thead>
+            <tr id="trth">
+                <th>Name</th>
+                <th>Price</th>
+                <th>Ingredients</th>
+                <th>Calories</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let product of historyProducts | async">
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.ingredients}}</td>
+                        <td>{{product.calories}}</td>
+                        <td>{{product.quantity}}</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+<p *ngIf='!historyProducts' class="alert alert-info"> There isn't a saved state of the storage, in order to compare the current state with the past state, save the current state of the storage.</p>

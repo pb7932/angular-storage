@@ -1,32 +1,35 @@
 <p *ngIf="message" class="alert alert-info">{{ message }}</p>
 <div *ngIf="products" class="product-table">
-    <button class="btn btn-secondary" (click)="onSave()">Save storage state</button>
+    <button class="btn btn-secondary" (click)="onSave(); history.getInitialHistoryState()">Save storage state</button>
     <p *ngIf="confirmState" class="alert alert-danger">Are you sure you don't want to make a copy of the storage's state?
-        <span class="btn btn-secondary space-left" (click)="saveState()">Yes</span>
+        <span class="btn btn-secondary space-left" (click)="saveState();">Yes</span>
         <span class="btn btn-secondary space-left" (click)="leaveState()">No</span>
     </p>
     <div class="table-container">
-        <table class="table table-dark table-bordered table-hover">
-            <thead>
-                <tr id="trth">
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Ingredients</th>
-                    <th>Calories</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr *ngFor="let product of products">
-                            <td>{{product.name}}</td>
-                            <td>{{product.price}}</td>
-                            <td>{{product.ingredients}}</td>
-                            <td>{{product.calories}}</td>
-                            <td>{{product.quantity}}</td>
+        <div>
+            <h5>Current state</h5>
+            <table class="table table-dark table-bordered table-hover">
+                <thead>
+                    <tr id="trth">
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Ingredients</th>
+                        <th>Calories</th>
+                        <th>Quantity</th>
                     </tr>
-            </tbody>
-        </table>
-        <app-history-storage></app-history-storage>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let product of products">
+                                <td>{{product.name}}</td>
+                                <td>{{product.price}}</td>
+                                <td>{{product.ingredients}}</td>
+                                <td>{{product.calories}}</td>
+                                <td>{{product.quantity}}</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-history-storage #history></app-history-storage>
     </div>
 </div>
 
