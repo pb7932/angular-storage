@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CanComponentDeactivate } from 'src/app/guards/can-deactivate.guard';
@@ -7,6 +7,7 @@ import { HistoryService } from 'src/app/services/history.service';
 
 import { Product } from 'src/app/services/product';
 import { ProductService } from 'src/app/services/product.service';
+import { HistoryStorageComponent } from '../history-storage/history-storage.component';
 
 @Component({
   selector: 'app-manage-storage',
@@ -18,6 +19,10 @@ export class ManageStorageComponent implements OnInit, CanComponentDeactivate {
   message: string;
   stateSaved: boolean;
   confirmState: boolean;
+
+  @ViewChild(HistoryStorageComponent) 
+  private historyComponent!: HistoryStorageComponent;
+
   constructor(private productService: ProductService,
               private historyService: HistoryService,
               private dialogService: DialogService) {
@@ -36,7 +41,8 @@ export class ManageStorageComponent implements OnInit, CanComponentDeactivate {
 
   onSave(): void {
     this.historyService.createHistory(this.products)
-        .subscribe(res => {this.message = "The state of the storage has been saved."; this.stateSaved = true;});
+        .subscribe(res => {this.message = "The state of the storage has been saved."; 
+            this.stateSaved = true; this.historyComponent.getInitialHistoryState()})
   }
 
   saveState() {
