@@ -1,6 +1,5 @@
 .table {
   width: 45%;
-  margin-top: 1rem;
 }
 
 .table th {
@@ -23,4 +22,11 @@ p {
 
 .alert-danger {
   margin: 1rem 1rem 0 0;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
 }

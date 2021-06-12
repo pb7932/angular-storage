@@ -5,25 +5,29 @@
         <span class="btn btn-secondary space-left" (click)="saveState()">Yes</span>
         <span class="btn btn-secondary space-left" (click)="leaveState()">No</span>
     </p>
-    <table class="table table-dark table-bordered table-hover">
-        <thead>
-            <tr id="trth">
-                <th>Name</th>
-                <th>Price</th>
-                <th>Ingredients</th>
-                <th>Calories</th>
-                <th>Quantity</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr *ngFor="let product of products">
-                        <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.ingredients}}</td>
-                        <td>{{product.calories}}</td>
-                        <td>{{product.quantity}}</td>
+    <div class="table-container">
+        <table class="table table-dark table-bordered table-hover">
+            <thead>
+                <tr id="trth">
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Ingredients</th>
+                    <th>Calories</th>
+                    <th>Quantity</th>
                 </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let product of products">
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.ingredients}}</td>
+                            <td>{{product.calories}}</td>
+                            <td>{{product.quantity}}</td>
+                    </tr>
+            </tbody>
+        </table>
+        <app-history-storage></app-history-storage>
+    </div>
 </div>
+
 <p *ngIf="!products" class="alert alert-info">There are no products in the storage.</p>

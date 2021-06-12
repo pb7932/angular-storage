@@ -8,6 +8,7 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { ManageStorageComponent } from './manage-storage/manage-storage.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { HistoryStorageComponent } from './history-storage/history-storage.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     ManageProductsComponent,
     ManageStorageComponent,
     AddProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    HistoryStorageComponent
   ],
   imports: [
     CommonModule,
