@@ -24,7 +24,7 @@ export class ManageProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   this.products$ = this.searchText$.pipe(
+    this.products$ = this.searchText$.pipe(
      startWith(''),
      tap(term => {this.initProductDeleteArray();}),
      debounceTime(500),
