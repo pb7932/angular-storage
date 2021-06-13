@@ -15,10 +15,10 @@ export class HistoryStorageComponent implements OnInit {
   diffRowClass: string = 'bg-diff';
   diffColClass: string = 'bg-diff-col';
   diff: Map<string, Number[]>;
-  historyProductMap: Map<string, Product>;
+  currentProductMap: Map<string, Product>;
   constructor(private historyService: HistoryService) {
     this.diff = new Map();
-    this.historyProductMap = new Map();
+    this.currentProductMap = new Map();
   }
 
   ngOnInit(): void {
@@ -28,32 +28,39 @@ export class HistoryStorageComponent implements OnInit {
   getInitialHistoryState() {
     this.historyService.getLatestHistory()
         .subscribe(products => {this.historyProducts$ = of(products); 
-                                this.initHistoryProductMap();
+                                this.initCurrentProductMap();
                                 this.productStateDiff()})
   }
-  initHistoryProductMap() {
-    this.historyProductMap = new Map();
+  initCurrentProductMap() {
+    this.currentProductMap = new Map();
 
-    let historyProducts!: Product[];
-    this.historyProducts$.subscribe(p => historyProducts = p);
-
-    for(let product of historyProducts) {
-      this.historyProductMap.set(product.name, product);
+    for(let product of this.currentProducts) {
+      this.currentProductMap.set(product.name, product);
     }
   }
 
   productStateDiff() {
-    for(let product of this.currentProducts) {
+    let historyProducts!: Product[];
+    this.historyProducts$.subscribe(p => historyProducts = p);
+
+    for(let product of historyProducts) {
       let col: number[] = [];
      
-      let historyP = this.historyProductMap.get(product.name);
-      
-      if(historyP) {
-        if(product.name != historyP.name) col.push(1);
-        if(product.price != historyP.price) col.push(2);
-        if(product.ingredients != historyP.ingredients) col.push(3);
-        if(product.calories != historyP.calories) col.push(4);
-        if(product.quantity != historyP.quantity) col.push(5);
+      let currentP = this.currentProductMap.get(product.name);
+     
+      if(currentP) {
+        if(product.name != currentP.name) col.push(1);
+        if(product.price != currentP.price) col.push(2);
+        if(product.ingredients != currentP.ingredients) col.push(3);
+        if(product.calories != currentP.calories) col.push(4);
+        if(product.quantity != currentP.quantity) col.push(5);
+      }
+      else {
+        col.push(1);
+        col.push(2);
+        col.push(3);
+        col.push(4);
+        col.push(5);
       }
 
       if(col.length > 0) this.diff.set(product.name, col);
