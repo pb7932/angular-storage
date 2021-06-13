@@ -14,10 +14,11 @@ export class HistoryStorageComponent implements OnInit {
   @Input() currentProducts!: Product[];
   diffRowClass: string = 'bg-diff';
   diffColClass: string = 'bg-diff-col';
-  diff: Map<Number, Number[]>;
-
+  diff: Map<string, Number[]>;
+  historyProductMap: Map<string, Product>;
   constructor(private historyService: HistoryService) {
     this.diff = new Map();
+    this.historyProductMap = new Map();
   }
 
   ngOnInit(): void {
@@ -25,30 +26,44 @@ export class HistoryStorageComponent implements OnInit {
   }
 
   getInitialHistoryState() {
-    this.historyService.getLatestHistory().subscribe(products => {this.historyProducts$ = of(products); 
-      this.productStateDiff()})
+    this.historyService.getLatestHistory()
+        .subscribe(products => {this.historyProducts$ = of(products); 
+                                this.initHistoryProductMap();
+                                this.productStateDiff()})
   }
+  initHistoryProductMap() {
+    this.historyProductMap = new Map();
 
-  productStateDiff() {
     let historyProducts!: Product[];
     this.historyProducts$.subscribe(p => historyProducts = p);
 
-    for(let index in this.currentProducts) {
-      let col = [];
-      if(this.currentProducts[index].name != historyProducts[index].name) col.push(1)
-      if(this.currentProducts[index].price != historyProducts[index].price) col.push(2)
-      if(this.currentProducts[index].ingredients != historyProducts[index].ingredients) col.push(3)
-      if(this.currentProducts[index].calories != historyProducts[index].calories) col.push(4)
-      if(this.currentProducts[index].quantity != historyProducts[index].quantity) col.push(5)
-      
-      if(col.length > 0)  this.diff.set( historyProducts[index].id, col )
+    for(let product of historyProducts) {
+      this.historyProductMap.set(product.name, product);
     }
   }
 
-  getColumnDiffClass(id: Number, colNum: Number): string {
-    let row = this.diff.get(id);
+  productStateDiff() {
+    for(let product of this.currentProducts) {
+      let col: number[] = [];
+     
+      let historyP = this.historyProductMap.get(product.name);
+      
+      if(historyP) {
+        if(product.name != historyP.name) col.push(1);
+        if(product.price != historyP.price) col.push(2);
+        if(product.ingredients != historyP.ingredients) col.push(3);
+        if(product.calories != historyP.calories) col.push(4);
+        if(product.quantity != historyP.quantity) col.push(5);
+      }
+
+      if(col.length > 0) this.diff.set(product.name, col);
+    }
+  }
+
+  getColumnDiffClass(name: string, colNum: Number): string {
+    let row = this.diff.get(name);
     let col = row?.filter(x => x == colNum);
-    console.log({id, colNum, col});
+
     if(col)
       return col.length > 0 ? 'bg-diff-col' : '';
 
