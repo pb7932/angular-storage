@@ -11,12 +11,13 @@
             </tr>
         </thead>
         <tbody>
-                <tr *ngFor="let product of historyProducts$ | async">
-                        <td>{{product.name}}</td>
-                        <td>{{product.price}}</td>
-                        <td>{{product.ingredients}}</td>
-                        <td>{{product.calories}}</td>
-                        <td>{{product.quantity}}</td>
+                <tr *ngFor="let product of historyProducts$ | async" 
+                    [class]="diff.has(product.id) ? diffRowClass : ''">
+                        <td [class]="getColumnDiffClass(product.id,1)">{{product.name}}</td>
+                        <td [class]="getColumnDiffClass(product.id,2)">{{product.price}}</td>
+                        <td [class]="getColumnDiffClass(product.id,3)">{{product.ingredients}}</td>
+                        <td [class]="getColumnDiffClass(product.id,4)">{{product.calories}}</td>
+                        <td [class]="getColumnDiffClass(product.id,5)">{{product.quantity}}</td>
                 </tr>
         </tbody>
     </table>

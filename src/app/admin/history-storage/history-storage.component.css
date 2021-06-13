@@ -1,3 +1,11 @@
 .alert {
   margin-top: 2rem;
 }
+
+.bg-diff-col {
+  background-color: #f64c72 !important;
+}
+
+.bg-diff td {
+  background-color: #99738e;
+}
