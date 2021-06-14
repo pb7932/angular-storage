@@ -24,10 +24,8 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule,
-    ProductsModule,
-    AdminModule,
     AuthModule,
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })
