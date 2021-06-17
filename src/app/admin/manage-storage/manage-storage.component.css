@@ -16,6 +16,10 @@ p {
   margin-left: 1rem;
 }
 
+.btn {
+  margin-bottom: 1rem;
+}
+
 .alert-danger {
   margin: 1rem 1rem 0 0;
 }

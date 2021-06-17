@@ -9,3 +9,15 @@
 .bg-diff td {
   background-color: #99738e;
 }
+
+input[type="date"] {
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.btn {
+  margin-top: -3px;
+}
