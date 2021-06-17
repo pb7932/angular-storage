@@ -21,3 +21,7 @@ input[type="date"] {
 .btn {
   margin-top: -3px;
 }
+
+.date-msg {
+  margin-left: 1rem;
+}

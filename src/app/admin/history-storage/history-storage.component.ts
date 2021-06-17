@@ -12,10 +12,14 @@ import { Product } from 'src/app/services/product';
 export class HistoryStorageComponent implements OnInit {
   historyProducts$!: Observable<Product[]>;
   @Input() currentProducts!: Product[];
+  currentProductMap: Map<string, Product>;
+  dateMsg = '';
+
   diffRowClass: string = 'bg-diff';
   diffColClass: string = 'bg-diff-col';
   diff: Map<string, Number[]>;
-  currentProductMap: Map<string, Product>;
+
+ 
   constructor(private historyService: HistoryService) {
     this.diff = new Map();
     this.currentProductMap = new Map();
@@ -23,14 +27,15 @@ export class HistoryStorageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInitialHistoryState()
+    this.initCurrentProductMap()
   }
 
   getInitialHistoryState() {
     this.historyService.getLatestHistory()
         .subscribe(products => {this.historyProducts$ = of(products); 
-                                this.initCurrentProductMap();
                                 this.productStateDiff()})
   }
+
   initCurrentProductMap() {
     this.currentProductMap = new Map();
 
@@ -77,4 +82,23 @@ export class HistoryStorageComponent implements OnInit {
     return '';
   }
 
+  chooseStateByDate(date: string) {
+    if(this.dateMsg)
+      this.dateMsg = '';
+    
+    let now = new Date(Date.now());
+    let today = now.toISOString();
+
+    if(date > today) {
+      this.dateMsg = 'Can not get storage state with a future date.';
+      return;
+    }
+      
+    this.historyService.getHistoryByDate(date)
+        .subscribe(products => {
+                  if(products) this.historyProducts$ = of(products)
+                  else this.dateMsg = 'There is no saved state before the chosen date.'; 
+                  this.productStateDiff()
+                })
+  }
 }
